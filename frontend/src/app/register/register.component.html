@@ -1,0 +1,5 @@
+<input type="email" placeholder="Enter your email" required #email> <br>
+<input type="username" placeholder="Enter your username" required #username> <br>
+<input type="password" placeholder="Enter you password" required #password> <br>
+<input type="password" placeholder="Re-Enter you password" required #repassword> <br>
+<button (click)="registerUser(email.value, username.value, password.value, repassword.value)">Register</button>
