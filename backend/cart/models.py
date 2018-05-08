@@ -8,7 +8,7 @@ class Book(models.Model):
     image = models.CharField(default='', max_length=255)
 
 class Order (models.Model):
-    order_id = models.CharField(max_length=255, unique=True)
+    order_id = models.CharField(max_length=255)
     list_books = models.ManyToManyField(Book)
     is_submit = models.BooleanField(default=False)
     total_money = models.FloatField(default=0)
