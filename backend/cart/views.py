@@ -3,55 +3,36 @@ from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework import permissions
 
 from .models import Book, Order
 from .serializers import BookSerializer, OrderSerializer
+from .permissions import IsAdminOrReadOnly
 
 # Create your views here.
 class BookListView (generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    # Permission IsAdminOrReadOnly
-    # https://stackoverflow.com/questions/37968770/django-rest-framework-permission-isadminorreadonly
+    permission_classes = (IsAdminOrReadOnly,)
 
 class BookDetailView (generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    # Permission IsAdminOrReadOnly
-    # https://stackoverflow.com/questions/37968770/django-rest-framework-permission-isadminorreadonly
+    permission_classes = (IsAdminOrReadOnly, )
 
-
-
-# Update model
-# https://docs.djangoproject.com/en/1.9/topics/db/queries/#updating-multiple-objects-at-once
 class OrderListView (viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-#     def get_permissions(self):
-#         if self.action == 'list':
-#             self.permission_classes = [IsSuperUser, ]
-#         elif self.action == 'retrieve':
-#             self.permission_classes = [IsUser]
-#         return super(self.__class__, self).get_permissions()
-
-# class IsSuperUser(BasePermission):
-
-#     def has_permission(self, request, view):
-#         return request.user and request.user.is_superuser
-
-# class IsUser(permissions.BasePermission):
-
-#     def has_object_permission(self, request, view, obj):
-#         if request.user:
-#             if request.user.is_superuser:
-#                 return True
-#             else:
-#                 return obj == request.user
-#         else:
-#             return False
+    def get_permissions(self):
+        if self.action == 'list':
+            self.permission_classes = (permissions.IsAdminUser, )
+        elif self.action == 'create':
+            self.permission_classes = (permissions.IsAuthenticated,)
+        return super().get_permissions()
 
 class OrderDetailView (generics.RetrieveUpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
 
