@@ -1,0 +1,14 @@
+<app-home></app-home>
+
+<div *ngIf="book; else notFoundDetail">
+  <h2>{{book.name}}</h2>
+  <h3>Price: {{book.price}} VND</h3>
+  <h5>Quantity: {{book.quantity}}</h5>
+  <h5>{{book.image}}</h5>
+  <button (click)="addBookToCart(book)">Add To Cart</button> <button (click)="goBack()">Go Back</button>
+</div>
+
+<ng-template #notFoundDetail>
+  <h1>Book Not Found</h1>
+  <a routerLink="/">Go back home</a>
+</ng-template>

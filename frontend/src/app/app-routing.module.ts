@@ -5,12 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BooksComponent } from './books/books.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'books', component: BooksComponent}
+  {path: '', component: BooksComponent},
+  {path: 'books/:id', component: BookDetailComponent},
+  {path: 'cart/:orderID', component: CartComponent},
+  {path: 'logout', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({

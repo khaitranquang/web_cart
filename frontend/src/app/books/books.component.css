@@ -1,0 +1,20 @@
+.list-items {
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-content: flex-end;
+}
+
+.list-item {
+  border: dimgray solid 1px;
+  width: 250px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.book-title {
+  height: 64px;
+}

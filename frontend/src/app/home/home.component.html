@@ -1,0 +1,14 @@
+<div *ngIf="tokenUser; else loginNav">
+  <h2><a routerLink="/">Home</a> |
+    Hello {{emailUser}} |
+    <a routerLink="/cart/{{orderID}}">My Cart</a> |
+    <a routerLink="/logout" (click)="logout()">Logout</a></h2>
+</div>
+
+<ng-template #loginNav>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+  </nav>
+</ng-template>

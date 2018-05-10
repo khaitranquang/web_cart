@@ -9,6 +9,6 @@ class Book(models.Model):
 
 class Order (models.Model):
     order_id = models.CharField(max_length=255)
-    list_books = models.ManyToManyField(Book)
+    list_books = models.ManyToManyField(Book, blank=True)
     is_submit = models.BooleanField(default=False)
     total_money = models.FloatField(default=0)
