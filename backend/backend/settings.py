@@ -39,9 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'authentication',
     'cart',
-    'home',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +84,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'web_cart',
+        'NAME': 'web_shopping',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
@@ -131,24 +129,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 # Static for ANGULAR
-ANGULAR_APP_DIR = os.path.join(BASE_DIR, '../frontend/dist')
+# ANGULAR_APP_DIR = os.path.join(BASE_DIR, '../frontend/dist')
 
-STATICFILES_DIRS = [
-    os.path.join(ANGULAR_APP_DIR),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(ANGULAR_APP_DIR),
+# ]
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Specifying the AUTH_USER_MODEL setting
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'cart.User'
 
 # Rest_Framework Settings
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'authentication.exceptions.core_exception_handler',
+    'EXCEPTION_HANDLER': 'cart.views.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
-    'DEFAULT_AUTHENTICATION_CLASSES': ('authentication.backends.JWTAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('cart.authentication.JWTAuthentication',),
 }
 
 CORS_ORIGIN_ALLOW_ALL = True 

@@ -8,6 +8,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+const API_LOGIN_URL = 'http://localhost:8000/api/auth/users/login/';
+
 @Injectable()
 export class UserService {
   constructor(
@@ -22,7 +24,7 @@ export class UserService {
       password: password
     };
 
-    return this.http.post('http://localhost:8000/api/auth/users/login/', body, httpOptions)
+    return this.http.post(API_LOGIN_URL, body, httpOptions)
       .subscribe(
         res => {
           if (res['user'] != null) {
@@ -35,6 +37,35 @@ export class UserService {
             console.log('Order ID: ', orderID);
             this.cartService.createOrder(orderID);
             this.router.navigate(['/']);
+          }
+        },
+        error => {
+          console.log('An error occurred: ', error.error);
+          alert('Tài khoản hoặc mật khẩu không đúng');
+          this.router.navigate(['/login']);
+        }
+      );
+  }
+
+  adminLogin (email, password) {
+    const body = {
+      email: email,
+      password: password
+    };
+
+    this.http.post(API_LOGIN_URL, body, httpOptions)
+      .subscribe(
+        res => {
+          if (res['user'] != null) {
+            if (res['user']['is_admin'] === false) {
+              alert('Bạn không phải quyền Admin - Hãy đăng nhập ở trang User thông thường');
+              return;
+            } else {
+              const localStorage = window.localStorage;
+              localStorage.setItem('emailAdmin', res['user']['email']);
+              localStorage.setItem('tokenAdmin', res['user']['token']);
+              this.router.navigate(['/admin/dashboard']);
+            }
           }
         },
         error => {

@@ -32,6 +32,10 @@ export class BooksComponent implements OnInit {
     );
   }
   addBookToCart(book: Book) {
+    if (window.localStorage.getItem('pkCart') === null) {
+      alert('Ban phai dang nhap de thuc hien chuc nang nay');
+      return;
+    }
     const id = parseInt(window.localStorage.getItem('pkCart'), 10);
     console.log(id);
     this.cartService.getCart(id).subscribe(
@@ -39,7 +43,7 @@ export class BooksComponent implements OnInit {
         this.listBooksIDCart = res['list_books'];
         this.listBooksIDCart.push(parseInt(book.id, 10));
         const orderID = window.localStorage.getItem('orderID');
-        this.cartService.updateOrder(orderID, this.listBooksIDCart, false).subscribe(
+        this.cartService.updateOrder(orderID, this.listBooksIDCart, false, 0).subscribe(
           response => {
             alert('Da them san pham vao gio hang');
           },

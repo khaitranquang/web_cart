@@ -6,7 +6,7 @@
       <h4 class="book-title"><a routerLink="/books/{{book.id}}">{{book.name}}</a></h4>
       <h5>{{ book.price }} VND</h5>
       <h5>Quantity: {{book.quantity}}</h5>
-      <h6>{{book.image}}</h6>
+      <h6>{{book.description}}</h6>
       <button (click)="addBookToCart(book)">Add to Cart</button>
     </div>
   </div>

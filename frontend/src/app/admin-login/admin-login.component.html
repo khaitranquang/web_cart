@@ -1,0 +1,5 @@
+<!--<div *ngIf="isLogin === false">-->
+  <input type="email" placeholder="Enter admin's email" required #email>
+  <input type="password" placeholder="Enter admin's password" required #password>
+  <button (click)="loginAdmin(email.value, password.value)">Login As Admin</button>
+<!--</div>-->

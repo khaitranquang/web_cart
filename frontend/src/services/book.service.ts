@@ -13,7 +13,7 @@ const httpOptionsNormal = {
 
 @Injectable()
 export class BookService {
-  private urlBooks = 'http://localhost:8000/api/v1/books';
+  private urlBooks = 'http://localhost:8000/api/books';
   constructor(
     private http: HttpClient,
   ) { }
@@ -35,4 +35,35 @@ export class BookService {
     const url = `${this.urlBooks}/${id}`;
     return this.http.get<Book>(url, httpOptionsNormal);
   }
+
+  /**
+   * Update a book - Only Admin allows update
+   * @param {Book} book
+   * @returns {Observable<any>}
+   */
+  updateBook (book: Book): Observable<any> {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    const id = book.id;
+    const url = `${this.urlBooks}/${id}`;
+    return this.http.put(url, book, httpOptionsAuth);
+  }
+
+  /**
+   * Delete book
+   * @param {Book} book
+   * @returns {Observable<any>}
+   */
+  deleteBook (book: Book): Observable<any> {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    const id = book.id;
+    const url = `${this.urlBooks}/${id}`;
+    return this.http.delete(url, httpOptionsAuth);
+  }
+
 }

@@ -4,8 +4,8 @@
   <tr *ngFor="let book of listBooksCart">
     <td>{{book.name}}</td>
     <td>{{book.price}}</td>
-    <button>Delete</button>
+    <button (click)="removeBook(book)">Delete</button>
   </tr>
 </table>
-
-<button>Thanh Toán</button>
+<h5>Thành tiền: {{totalMoney}}</h5>
+<button (click)="payment()">Thanh Toán</button>

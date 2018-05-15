@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
@@ -15,6 +16,9 @@ import { UserService} from '../services/user.service';
 import { BookService } from '../services/book.service';
 import { CartService } from '../services/cart.service';
 import { CartComponent } from './cart/cart.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBookDetailComponent } from './admin-book-detail/admin-book-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,17 @@ import { CartComponent } from './cart/cart.component';
     BooksComponent,
     BookDetailComponent,
     HomeComponent,
-    CartComponent
+    CartComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    AdminBookDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StorageServiceModule
+    StorageServiceModule,
+    FormsModule
   ],
   providers: [
     UserService,

@@ -3,5 +3,5 @@ export class Book {
   name: string;
   quantity: number;
   price: number;
-  image: string;
+  description: string;
 }

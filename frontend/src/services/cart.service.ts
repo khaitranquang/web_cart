@@ -6,8 +6,7 @@ import {Book} from '../models/book';
 
 @Injectable()
 export class CartService {
-  private urlCart = 'http://localhost:8000/api/v1/orders';
-  private totalMoney = 0;
+  private urlCart = 'http://localhost:8000/api/orders';
   constructor(
     private http: HttpClient
   ) { }
@@ -55,9 +54,7 @@ export class CartService {
    * @param listBooks
    * @param isSubmit
    */
-  updateOrder(orderID, listBooks, isSubmit) {
-    if (isSubmit) {
-    }
+  updateOrder(orderID, listBooks, isSubmit, totalMoney) {
     const token = 'Token ' + window.localStorage.getItem('token');
     const httpOptionsAuth = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
@@ -68,7 +65,7 @@ export class CartService {
       order_id: orderID,
       list_books: listBooks,
       is_submit: isSubmit,
-      total_money: 0
+      total_money: totalMoney
     };
     return this.http.put(url, body, httpOptionsAuth);
   }

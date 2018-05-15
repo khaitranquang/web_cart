@@ -1,0 +1,13 @@
+table {
+  margin: 20px auto;
+  width: 80%;
+  border: 1px solid;
+}
+
+thead {
+  border: 2px solid;
+}
+
+tr:hover {
+  cursor: pointer;
+}
