@@ -113,4 +113,12 @@ export class UserService {
     localStorage.removeItem('orderID');
     localStorage.removeItem('pkCart');
   }
+
+  /**
+   * Admin Logout
+   */
+  logoutAdmin () {
+    window.localStorage.removeItem('emailAdmin');
+    window.localStorage.removeItem('tokenAdmin');
+  }
 }

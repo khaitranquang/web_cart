@@ -19,6 +19,7 @@ import { CartComponent } from './cart/cart.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminBookDetailComponent } from './admin-book-detail/admin-book-detail.component';
+import { AdminOrderDetailComponent } from './admin-order-detail/admin-order-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AdminBookDetailComponent } from './admin-book-detail/admin-book-detail.
     CartComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
-    AdminBookDetailComponent
+    AdminBookDetailComponent,
+    AdminOrderDetailComponent
   ],
   imports: [
     BrowserModule,

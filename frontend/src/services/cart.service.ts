@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Book} from '../models/book';
+import {Observable} from 'rxjs/Observable';
 
+import {Book} from '../models/book';
+import {Order} from '../models/order';
 
 
 @Injectable()
@@ -17,7 +19,7 @@ export class CartService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
     };
     const url = `${this.urlCart}/${id}`;
-    return this.http.get(url, httpOptionsAuth);
+      return this.http.get(url, httpOptionsAuth);
   }
 
   /**
@@ -68,5 +70,40 @@ export class CartService {
       total_money: totalMoney
     };
     return this.http.put(url, body, httpOptionsAuth);
+  }
+
+  /**
+   * Get list Order
+   */
+  getOrders(): Observable<Order[]> {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    return this.http.get<Order[]>(this.urlCart, httpOptionsAuth);
+  }
+
+  /**
+   * Get detail order - Admin
+   */
+  getOrder(id: number): Observable<Order> {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    const url = `${this.urlCart}/${id}`;
+    return this.http.get<Order>(url, httpOptionsAuth);
+  }
+
+  /**
+   * Delete a order - Admin
+   */
+  deleteOrder (id: number) {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    const url = `${this.urlCart}/${id}`;
+    return this.http.delete(url, httpOptionsAuth);
   }
 }

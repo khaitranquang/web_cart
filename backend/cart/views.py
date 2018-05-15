@@ -92,7 +92,7 @@ class OrderListView (viewsets.ModelViewSet):
             self.permission_classes = (permissions.IsAuthenticated,)
         return super().get_permissions()
 
-class OrderDetailView (generics.RetrieveUpdateAPIView):
+class OrderDetailView (generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated, )
     serializer_class = OrderSerializer
     queryset = Order.objects.all()

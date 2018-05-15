@@ -1,0 +1,18 @@
+<h2>Order Detail</h2>
+
+<div *ngIf="order">
+  <h4>ID: {{order.id}}</h4>
+  <h4>Order ID: {{order.order_id}}</h4>
+  <h4>List Book: </h4>
+
+  <div *ngFor="let index of order.list_books">
+    <p><a routerLink="/admin/books/{{index}}">Book ID {{index}}</a></p>
+  </div>
+  <h5>Submit: {{order.is_submit}}</h5>
+  <h5>Total: {{order.total_money}}</h5>
+
+  <div *ngIf="order.is_submit === false">
+    <button (click)="deleteOrder()">Delete this order</button>
+  </div>
+  <button (click)="goBack()">Go Back Dashboard</button>
+</div>

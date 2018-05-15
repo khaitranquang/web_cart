@@ -52,6 +52,27 @@ export class BookService {
   }
 
   /**
+   * Create a new Book
+   * @param name
+   * @param price
+   * @param quantity
+   * @param description
+   */
+  createBook(name, price, quantity, description) {
+    const token = 'Token ' + window.localStorage.getItem('tokenAdmin');
+    const httpOptionsAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }).set('Authorization', token)
+    };
+    const body = {
+      name: name,
+      price: price,
+      quantity: quantity,
+      description: description
+    };
+    return this.http.post(this.urlBooks, body, httpOptionsAuth);
+  }
+
+  /**
    * Delete book
    * @param {Book} book
    * @returns {Observable<any>}

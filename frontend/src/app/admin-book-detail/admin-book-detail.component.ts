@@ -41,7 +41,10 @@ export class AdminBookDetailComponent implements OnInit {
    * Delete this Book
    */
   deleteBook(): void {
-    this.bookService.deleteBook(this.book).subscribe(() => alert('Xoa thanh cong'));
+    this.bookService.deleteBook(this.book).subscribe(() => {
+      alert('Xoa thanh cong');
+      this.routerDirect.navigate(['/admin/dashboard']);
+    });
   }
 
   /**

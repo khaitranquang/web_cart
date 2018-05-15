@@ -7,26 +7,26 @@
   <br>
 
   <label>Name:
-    <input [(ngModel)]="book.name" placeholder="name">
+    <input [(ngModel)]="book.name" placeholder="Name">
   </label>
   <br>
 
   <label>Price:
-    <input [(ngModel)]="book.price" placeholder="name">
+    <input [(ngModel)]="book.price" placeholder="Price">
   </label>
   <br>
 
-  <label>Name:
+  <label>Quantity:
     <span>{{book.quantity}}</span>
   </label>
   <br>
 
   <label>Description:
-    <textarea [(ngModel)]="book.description" placeholder="name"></textarea>
+    <textarea [(ngModel)]="book.description" placeholder="Description"></textarea>
   </label>
   <br>
 </div>
 
 <button (click)="updateBook()">Save</button>
-<button>Delete This Book</button>
+<button (click)="deleteBook()">Delete This Book</button>
 <button (click)="back()">Back to Dashboard</button>

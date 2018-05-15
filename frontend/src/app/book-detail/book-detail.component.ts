@@ -18,7 +18,7 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private cartService: CartService,
-      private location: Location
+    private location: Location
   ) { }
 
   ngOnInit() {
